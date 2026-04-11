@@ -11,9 +11,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class LoggingAspect {
 
-    // Pointcut: All methods in 'di' package
-    @Before("execution(* com.saha.amit.spring_Basic.di.*.*(..))")
+    // Pointcut: All methods in 'dependencyInjection' package
+    @Before("execution(* com.saha.amit.spring_Basic.dependencyInjection.*.*(..))")
     public void logBefore() {
-        System.out.println("[AOP] Log: Executing a business method in 'di' package...");
+        System.out.println("[AOP] Log: Executing a business method in 'dependencyInjection' package...");
     }
 }

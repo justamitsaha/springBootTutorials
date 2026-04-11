@@ -11,7 +11,7 @@ To run a specific concept, execute the corresponding **Runner** class. Since thi
 - **Focus:** Demonstrates how to use interfaces (`GameRunner`) to decouple code. This is a pure Java example showing the "Why" behind Spring.
 
 ### 2. Dependency Injection (DI) & Resolution
-- **Runner:** `com.saha.amit.spring_Basic.di.DIRunner`
+- **Runner:** `com.saha.amit.spring_Basic.dependencyInjection.DIRunner`
 - **Focus:** 
     - Constructor Injection (`BusinessLogic.java`).
     - DI Resolution using `@Primary` and `@Qualifier`.
@@ -47,6 +47,6 @@ To run a specific concept, execute the corresponding **Runner** class. Since thi
 ## 🚀 Maven Command Line Execution
 If you wish to run a specific runner from the command line, use:
 ```bash
-mvn spring-boot:run -Dspring-boot.run.main-class=com.saha.amit.spring_Basic.di.DIRunner
+mvn spring-boot:run -Dspring-boot.run.main-class=com.saha.amit.spring_Basic.dependencyInjectionpendencyInjection.DIRunner
 ```
 *(Replace the class path with the desired runner)*

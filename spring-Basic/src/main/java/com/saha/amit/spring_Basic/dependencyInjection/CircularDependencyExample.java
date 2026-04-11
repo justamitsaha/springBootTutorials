@@ -1,4 +1,4 @@
-package com.saha.amit.spring_Basic.di;
+package com.saha.amit.spring_Basic.dependencyInjection;
 
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
