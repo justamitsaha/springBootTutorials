@@ -7,7 +7,7 @@ This project is a modular deep-dive into the foundational mechanics of the Sprin
 To run a specific concept, execute the corresponding **Runner** class. Since this project contains multiple main methods, you can run them via your IDE (Right-click -> Run) or via the command line.
 
 ### 1. Coupling (Tight vs Loose)
-- **Runner:** `com.saha.amit.spring_Basic.coupling.CouplingRunner`
+- **Runner:** `com.saha.amit.spring_Basic.A_coupling.CouplingRunner`
 - **Focus:** Demonstrates how to use interfaces (`GameRunner`) to decouple code. This is a pure Java example showing the "Why" behind Spring.
 
 ### 2. Dependency Injection (DI) & Resolution

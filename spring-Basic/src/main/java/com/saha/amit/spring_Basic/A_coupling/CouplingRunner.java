@@ -1,7 +1,7 @@
-package com.saha.amit.spring_Basic.coupling;
+package com.saha.amit.spring_Basic.A_coupling;
 
 /**
- * RUNNER: Pure Java execution to show coupling.
+ * RUNNER: Pure Java execution to show A_coupling.
  */
 public class CouplingRunner {
     public static void main(String[] args) {
