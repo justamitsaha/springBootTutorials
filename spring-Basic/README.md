@@ -1,50 +1,52 @@
 # 🟢 spring-Basic: Core Spring Concepts
 
-This project is a deep-dive into the foundational mechanics of the Spring Framework, implemented using Spring Boot 3.x.
+This project is a modular deep-dive into the foundational mechanics of the Spring Framework. Features are broken down into individual packages, each with its own **Runner** class to isolate and demonstrate a specific concept.
 
-## 🏁 Feature to Code Mapping
+## 🏁 How to Run Individual Features
+
+To run a specific concept, execute the corresponding **Runner** class. Since this project contains multiple main methods, you can run them via your IDE (Right-click -> Run) or via the command line.
 
 ### 1. Coupling (Tight vs Loose)
-- **Package:** `com.saha.amit.spring_Basic.coupling`
-- **Classes:** `CouplingExample.java`, `GameRunner` (Interface), `MarioGame`, `SuperContra`, `GameConsole`.
-- **Purpose:** Demonstrates how to use interfaces to decouple code, which is the core problem Spring solves.
+- **Runner:** `com.saha.amit.spring_Basic.coupling.CouplingRunner`
+- **Focus:** Demonstrates how to use interfaces (`GameRunner`) to decouple code. This is a pure Java example showing the "Why" behind Spring.
 
 ### 2. Dependency Injection (DI) & Resolution
-- **Package:** `com.saha.amit.spring_Basic.di`
-- **Constructor Injection:** `BusinessLogic.java` (Recommended).
-- **Setter Injection:** `NotificationService` in `DIExample.java`.
-- **@Primary:** `SortingAlgorithm.java` -> `QuickSort`.
-- **@Qualifier:** `SortingAlgorithm.java` -> `BubbleSort`.
-- **Ambiguity Resolution:** `SearchService.java` vs `HighPrioritySearchService.java`.
-- **Circular Dependency:** `CircularDependencyExample.java` (shows resolution via `@Lazy`).
+- **Runner:** `com.saha.amit.spring_Basic.di.DIRunner`
+- **Focus:** 
+    - Constructor Injection (`BusinessLogic.java`).
+    - DI Resolution using `@Primary` and `@Qualifier`.
 
-### 3. Bean Basics & Stereotypes
-- **Package:** `com.saha.amit.spring_Basic.stereotypes`
-- **Classes:** `StereotypeExample.java`, `UserRepo` (`@Repository`), `UserService` (`@Service`).
-- **Java Configuration:** `com.saha.amit.spring_Basic.config.AppConfig.java` (uses `@Configuration` and `@Bean`).
+### 3. Bean Lifecycle & Scopes
+- **Runner:** `com.saha.amit.spring_Basic.lifecycle.LifecycleRunner`
+- **Focus:**
+    - Singleton vs. Prototype Scopes.
+    - Lifecycle Hooks (`@PostConstruct`, `@PreDestroy`).
+    - Lazy Initialization (`@Lazy`).
 
-### 4. Bean Lifecycle & Scopes
-- **Package:** `com.saha.amit.spring_Basic.lifecycle`
-- **Scopes (Singleton/Prototype):** `LifecycleExample.java`.
-- **Lifecycle Hooks (@PostConstruct/@PreDestroy):** `LifecycleExample.java`.
-- **Lazy Initialization (@Lazy):** `AdvancedLifecycle.java`.
-- **Aware Interfaces:** `AdvancedLifecycle.java` -> `AwareBean` (implements `BeanNameAware`, `ApplicationContextAware`).
-
-### 5. AOP (Aspect Oriented Programming)
-- **Package:** `com.saha.amit.spring_Basic.aop`
-- **Classes:** `LoggingAspect.java`.
-- **Purpose:** Intercepts methods in the `di` package to demonstrate cross-cutting concerns.
+### 4. AOP (Aspect Oriented Programming)
+- **Runner:** `com.saha.amit.spring_Basic.aop.AopRunner`
+- **Focus:** Intercepting business logic methods using `@Aspect` to apply cross-cutting concerns like logging.
 
 ---
 
-## 🚀 How to Run
-1. Navigate to the `spring-Basic` directory.
-2. Run the application using Maven:
-   ```bash
-   mvn spring-boot:run
-   ```
-3. Watch the console logs for the structured output explaining each feature in real-time.
+## 📂 Feature to Code Mapping
 
-## 📂 Core Package Structure
-- `SpringBasicApplication.java`: The main entry point where beans are retrieved and demonstrated.
-- `target/`: Generated classes after compilation.
+| Package | Feature | Key Classes |
+| :--- | :--- | :--- |
+| `coupling` | Loose Coupling | `GameRunner`, `MarioGame`, `GameConsole` |
+| `di` | Constructor Injection | `BusinessLogic`, `SimpleService` |
+| `di` | DI Resolution | `SearchService` (@Primary), `HighPrioritySearchService` (@Qualifier) |
+| `di` | Circular Dependency | `CircularDependencyExample` (@Lazy resolution) |
+| `lifecycle` | Scopes & Hooks | `LifecycleExample` (@PostConstruct) |
+| `lifecycle` | Advanced Lifecycle | `AdvancedLifecycle` (Aware Interfaces, @Lazy) |
+| `config` | Java Configuration | `AppConfig` (@Configuration, @Bean) |
+| `aop` | Aspect Interception | `LoggingAspect` (@Before) |
+
+---
+
+## 🚀 Maven Command Line Execution
+If you wish to run a specific runner from the command line, use:
+```bash
+mvn spring-boot:run -Dspring-boot.run.main-class=com.saha.amit.spring_Basic.di.DIRunner
+```
+*(Replace the class path with the desired runner)*
