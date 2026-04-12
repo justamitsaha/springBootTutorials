@@ -19,26 +19,13 @@ public class QualifiersRunner {
         System.out.println("--------------------------------------------------");
         System.out.println("2. Resolution Strategy (@Primary vs @Qualifier)");
         System.out.println("Default (@Primary):");
-        context.getBean(SearchService.class).executeSearch();
+        SearchService searchService = context.getBean(SearchService.class);
+        searchService.executeSearch();
 
         System.out.println("Specific (@Qualifier):");
-        context.getBean(HighPrioritySearchService.class).executeSearch();
+        searchService.executeHighPrioritySearch();
         System.out.println("--------------------------------------------------");
 
-    }
-
-    @Component
-    static class SearchService {
-        private final SortingAlgorithm sortingAlgorithm;
-
-        // By default, Spring will inject QuickSort because it is @Primary
-        public SearchService(SortingAlgorithm sortingAlgorithm) {
-            this.sortingAlgorithm = sortingAlgorithm;
-        }
-
-        public void executeSearch() {
-            sortingAlgorithm.sort();
-        }
     }
 
     interface SortingAlgorithm {
@@ -70,17 +57,25 @@ public class QualifiersRunner {
     }
 
     @Component
-    static class HighPrioritySearchService {
+    static class SearchService {
         private final SortingAlgorithm sortingAlgorithm;
+        private final SortingAlgorithm highPrioritySortingAlgorithm;
 
-        // Specifically asking for BubbleSort using @Qualifier
-        public HighPrioritySearchService(@Qualifier("bubbleSort") SortingAlgorithm sortingAlgorithm) {
+
+        public SearchService(SortingAlgorithm sortingAlgorithm,  // By default, Spring will inject QuickSort because it is @Primary
+                             @Qualifier("bubbleSort") SortingAlgorithm highPrioritySortingAlgorithm) { // Specifically asking for BubbleSort using @Qualifier
             this.sortingAlgorithm = sortingAlgorithm;
+            this.highPrioritySortingAlgorithm = highPrioritySortingAlgorithm;
         }
 
         public void executeSearch() {
             sortingAlgorithm.sort();
         }
+
+        public void executeHighPrioritySearch() {
+            highPrioritySortingAlgorithm.sort();
+        }
     }
+
 
 }
