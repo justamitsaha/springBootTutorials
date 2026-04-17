@@ -52,3 +52,16 @@ public class CircularDependencyRunner {
         }
     }
 }
+/*Important Notes:
+1. Circular Dependency: ComponentA depends on ComponentB, and ComponentB depends on ComponentA. This creates a circular dependency that Spring cannot resolve by default.
+2. @Lazy: By annotating the ComponentB parameter in ComponentA's constructor with @Lazy, we tell Spring to inject a proxy that will only initialize ComponentB when it's actually needed (when talk() is called). This allows Spring to break the circular dependency and successfully create both beans.
+3. Best Practice: While @Lazy can resolve circular dependencies, it's generally better to refactor your design to avoid them in the first place. Circular dependencies can make your code harder to understand and maintain. Consider using interfaces, event-driven design, or other patterns to decouple your components if you find yourself needing circular dependencies.
+
+
+
+Resolving a circular dependency depends on whether you want to maintain constructor injection or switch to setter injection. Both methods effectively break the cycle by delaying the full initialization of one bean
+
+Recommended Approaches
+@Lazy Annotation (Best for Constructor Injection): Use this if you want to keep using constructor injection. By annotating the dependent bean in the constructor, Spring injects a proxy instead of the actual bean. The real bean is only initialized when a method is first called on that proxy.
+Setter Injection: This is a standard alternative where Spring first creates the bean using its default constructor and then injects dependencies afterward via setter methods. This avoids the "deadlock" of two beans waiting for each other to be fully constructed before either can exist
+ */

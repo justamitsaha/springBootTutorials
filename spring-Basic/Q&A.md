@@ -1,7 +1,5 @@
 # 🎤 Spring Core: Interview Q&A
 
-This document contains critical interview questions and answers based on the core Spring concepts covered in this project.
-
 ---
 
 ### 🔹 1. Tight vs. Loose Coupling
@@ -9,8 +7,7 @@ This document contains critical interview questions and answers based on the cor
 
 **Answer:**
 - Loose coupling means a class is not dependent on a specific implementation but rather on an abstraction (Interface).
-- This allows for easier testing (mocking), maintainability, and flexibility to swap implementations without changing the dependent class.
-- **Example:** `GameConsole` depends on `GameRunner` (interface), not `MarioGame` specifically.
+- This allows for easier testing (mocking), maintainability, and **flexibility to swap implementations** without changing the dependent class.
 
 ---
 
@@ -68,6 +65,12 @@ This document contains critical interview questions and answers based on the cor
 - **Fix:** 
     - Refactor the code to break the cycle (Best practice).
     - Use `@Lazy` on one of the injection points to tell Spring to create a proxy instead of the full bean initially.
+
+Resolving a circular dependency depends on whether you want to maintain  **constructor injection**  or switch to  **setter injection**. Both methods effectively break the cycle by delaying the full initialization of one bean. 
+Recommended Approaches
+
+-   **@Lazy Annotation (Best for Constructor Injection):**  Use this if you want to keep using constructor injection. By annotating the dependent bean in the constructor, Spring injects a  **proxy**  instead of the actual bean. The real bean is only initialized when a method is first called on that proxy.
+-   **Setter Injection:**  This is a standard alternative where Spring first creates the bean using its default constructor and then injects dependencies afterward via setter methods. This avoids the "deadlock" of two beans waiting for each other to be fully constructed before either can exist.
 
 ---
 
