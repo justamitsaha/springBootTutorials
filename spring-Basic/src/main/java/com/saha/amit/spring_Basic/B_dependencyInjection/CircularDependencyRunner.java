@@ -11,18 +11,9 @@ import org.springframework.stereotype.Component;
  */
 @SpringBootApplication
 public class CircularDependencyRunner {
-    public static void main(String[] args) {
-        ApplicationContext context = SpringApplication.run(CircularDependencyRunner.class, args);
-        
-        System.out.println("--------------------------------------------------");
-        System.out.println("Circular Dependency Demo");
-        ComponentA a = context.getBean(ComponentA.class);
-        a.talk();
-        System.out.println("--------------------------------------------------");
-    }
 
     /**
-     * CIRCULAR DEPENDENCY: Best Practice: Avoid circular dependencies by refactoring 
+     * CIRCULAR DEPENDENCY: Best Practice: Avoid circular dependencies by refactoring
      * your design. If impossible, use @Lazy to break the cycle.
      */
     @Component
@@ -51,12 +42,23 @@ public class CircularDependencyRunner {
             System.out.println("B talking back to A...");
         }
     }
+
+    public static void main(String[] args) {
+        ApplicationContext context = SpringApplication.run(CircularDependencyRunner.class, args);
+
+        System.out.println("--------------------------------------------------");
+        System.out.println("Circular Dependency Demo");
+        ComponentA a = context.getBean(ComponentA.class);
+        a.talk();
+        System.out.println("--------------------------------------------------");
+    }
+
+
 }
 /*Important Notes:
 1. Circular Dependency: ComponentA depends on ComponentB, and ComponentB depends on ComponentA. This creates a circular dependency that Spring cannot resolve by default.
 2. @Lazy: By annotating the ComponentB parameter in ComponentA's constructor with @Lazy, we tell Spring to inject a proxy that will only initialize ComponentB when it's actually needed (when talk() is called). This allows Spring to break the circular dependency and successfully create both beans.
 3. Best Practice: While @Lazy can resolve circular dependencies, it's generally better to refactor your design to avoid them in the first place. Circular dependencies can make your code harder to understand and maintain. Consider using interfaces, event-driven design, or other patterns to decouple your components if you find yourself needing circular dependencies.
-
 
 
 Resolving a circular dependency depends on whether you want to maintain constructor injection or switch to setter injection. Both methods effectively break the cycle by delaying the full initialization of one bean

@@ -1,21 +1,9 @@
 package com.saha.amit.spring_Basic.A_coupling;
 
 /**
- * RUNNER: Pure Java execution to show A_coupling.
+ * RUNNER: Pure Java execution to show loose coupling.
  */
 public class CouplingRunner {
-    public static void main(String[] args) {
-        System.out.println("--- Coupling Demo ---");
-        
-        // Loose Coupling: GameConsole accepts any GameRunner
-        GameRunner mario = new MarioGame();
-        GameConsole console = new GameConsole(mario);
-        console.playGame();
-
-        GameRunner contra = new SuperContra();
-        GameConsole console2 = new GameConsole(contra);
-        console2.playGame();
-    }
 
     interface GameRunner {
         void run();
@@ -49,6 +37,19 @@ public class CouplingRunner {
         public void playGame() {
             game.run();
         }
+    }
+
+    public static void main(String[] args) {
+        System.out.println("--- Coupling Demo ---");
+
+        // Loose Coupling: GameConsole accepts any GameRunner
+        GameRunner mario = new MarioGame();
+        GameConsole console = new GameConsole(mario);
+        console.playGame();
+
+        GameRunner contra = new SuperContra();
+        GameConsole console2 = new GameConsole(contra);
+        console2.playGame();
     }
 }
 
