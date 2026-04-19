@@ -1,9 +1,11 @@
+# Maven
 target/
-!.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
 
-### STS ###
+# IntelliJ
+.idea/
+*.iml
+
+# Eclipse / STS
 .apt_generated
 .classpath
 .factorypath
@@ -12,28 +14,22 @@ target/
 .springBeans
 .sts4-cache
 
-
-### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
-.DS_Store
-
-### NetBeans ###
+# NetBeans
 /nbproject/private/
 /nbbuild/
 /dist/
 /nbdist/
 /.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
 
-### Java / Compiled files ###
+# Build
+build/
+
+# OS
+.DS_Store
+
+# Java compiled
 *.class
 *.log
-*.ctxt
 *.jar
 *.war
 *.nar
