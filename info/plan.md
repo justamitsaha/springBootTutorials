@@ -1,61 +1,67 @@
 # 🗺️ Spring Boot Mastery Project Plan
 
-This plan breaks down the 🟢 **Basics**, 🟡 **Intermediate**, and 🔴 **Advanced** topics into 8 logical projects.
+This roadmap breaks down Spring Boot into 8 sequentially ordered hands-on projects, spanning 🟢 **Junior-Mid**, 🟡 **Mid-Senior**, and 🔴 **Senior-Lead** competency levels.
 
 ---
 
-## ✅ Completed Projects (3)
+## 📚 Study Sequence & Module Map
 
-### 1. `spring-Basic`
-- **Focus:** Core Framework & IoC.
-- **Topics:** Tight vs Loose Coupling, IoC Container, DI Types (Constructor/Setter), Bean Lifecycle, Scopes, and Component Scanning.
+### 1. `01_spring-basic`
+- **Focus:** Core Framework & IoC Container.
+- **Topics:** Tight vs. Loose Coupling, IoC Container, Dependency Injection Types (Constructor/Setter/Field), Bean Lifecycle (`@PostConstruct`, `@PreDestroy`), Bean Scopes (Singleton, Prototype), Component Scanning, and Java-based `@Configuration`.
 
-### 2. `springBootBasic`
-- **Focus:** Spring Boot Foundations & Web.
-- **Topics:** Starters, Auto-configuration, `@RestController`, Request Mapping, Profiles (`application-dev.yml`), Externalized Config (`@Value`, `@ConfigurationProperties`), and Basic Validation.
+### 2. `02_spring-web-basic`
+- **Focus:** Spring Boot Foundations, RESTful APIs & Configuration.
+- **Topics:** Starters, Auto-configuration, `@RestController`, Request Mapping, Profiles (`application-dev.yml`), Externalized Configuration (`@Value`, `@ConfigurationProperties`), JSR-380 Request Validation (`@Valid`), and Global Error Handling (`@RestControllerAdvice`).
 
-### 3. `springBootJPA`
-- **Focus:** Data Access & Performance.
-- **Topics:** Entity Mapping, Relationships (1:1, 1:N), JPQL vs Native Queries, **N+1 Problem** resolution (`JOIN FETCH`), Projections, and H2 Console.
+### 3. `03_spring-data-jpa`
+- **Focus:** Data Persistence, Performance & Transactions.
+- **Topics:** Entity Mapping, Relationships (One-to-One, One-to-Many), Spring Data Repositories, JPQL vs. Native Queries, **N+1 Problem** resolution (`JOIN FETCH`), Interface Projections, and H2 Console integration.
 
----
-
-## 🚀 Upcoming Projects (5)
-
-### 4. `spring-security-pro`
-- **Focus:** Authentication, Authorization, and Identity.
+### 4. `04_spring-security-pro`
+- **Focus:** Enterprise Identity, Authentication & Authorization.
 - **Topics:**
-    - **Intermediate:** Filter Chain, Database-backed Auth, Form Login.
-    - **Advanced:** JWT (Stateless Auth), OAuth2/OIDC (Social Login), Method-level security (`@PreAuthorize`), and RBAC (Role-Based Access Control).
+  - **Core Security:** Security Filter Chain (`SecurityFilterChain`), BCrypt Password Encoding, Database-backed authentication (`UserDetailsService`).
+  - **Stateless Identity:** JWT token generation and validation (`JwtAuthenticationFilter`), Role-Based Access Control (RBAC), and Method-Level Security (`@PreAuthorize`).
 
-### 5. `spring-aop-internals`
-- **Focus:** The "Magic" of Spring & Cross-Cutting Concerns.
+### 5. `05_spring-aop-internals`
+- **Focus:** Framework Internals, Proxies & Cross-Cutting Concerns.
 - **Topics:**
-    - **Intermediate:** AOP (Aspects, Pointcuts), `@Async` processing, Global Exception Handling (`@ControllerAdvice`).
-    - **Advanced:** `BeanPostProcessors`, Custom Starters, JDK Dynamic Proxies vs CGLIB, and the `ApplicationContext` startup flow.
+  - **AOP:** Aspects, Pointcuts, `@Around` advice, custom marker annotations (`@LogExecutionTime`).
+  - **Internals:** `BeanPostProcessor` lifecycle hooks, Handler Interceptors (`HandlerInterceptor`), Asynchronous execution (`@Async`), and dynamic proxy mechanics.
 
-### 6. `spring-observability-resilience`
-- **Focus:** Production-Grade Operations.
+### 6. `06_spring-testing-mastery`
+- **Focus:** Engineering Excellence, Testing Strategy & Quality Assurance.
 - **Topics:**
-    - **Intermediate:** Actuator Customization, Structured Logging (JSON), Health Indicators.
-    - **Advanced:** Distributed Tracing (Micrometer/Zipkin), Resilience4j (Circuit Breaker, Rate Limiter), and Prometheus/Grafana integration.
+  - **Slice Testing:** Isolated layer testing with `@WebMvcTest` + `MockMvc` and `@DataJpaTest`.
+  - **Integration Testing:** Real infrastructure integration using **Testcontainers** (Dockerized PostgreSQL) and Spring Boot 3.1+ `@ServiceConnection`.
+  - **Architecture Enforcement:** Automated package and dependency rules using **ArchUnit**.
 
-### 7. `spring-reactive-concurrency`
-- **Focus:** Modern High-Performance Architectures.
+### 7. `07_spring-observability-resilience`
+- **Focus:** Production-Grade Operations, Fault Tolerance & Metrics.
 - **Topics:**
-    - **Advanced:** Project Loom (Virtual Threads), WebFlux (Reactive Streams), Multi-level Caching (Caffeine/Redis), and Distributed Consistency.
+  - **Observability:** Spring Boot Actuator (`/health`, `/metrics`), custom `HealthIndicator`, structured logging.
+  - **Fault Tolerance:** **Resilience4j** declarative patterns including Circuit Breaker and Retry with fallbacks.
+  - **Tracing:** Distributed tracing foundation with Micrometer and Zipkin/Brave.
 
-### 8. `spring-testing-mastery`
-- **Focus:** Engineering Excellence & Reliability.
+### 8. `08_spring-reactive-concurrency`
+- **Focus:** Modern High-Performance Architectures & Non-Blocking I/O.
 - **Topics:**
-    - **Intermediate:** Slice Testing (`@WebMvcTest`, `@DataJpaTest`), JUnit 5/Mockito.
-    - **Advanced:** **Testcontainers** (Docker-based integration tests), **ArchUnit** (Architecture enforcement), and Contract Testing.
+  - **Virtual Threads (Project Loom):** High-throughput lightweight concurrency in Java 21+ and Spring Boot 3.2+ (`spring.threads.virtual.enabled=true`).
+  - **Spring WebFlux:** Asynchronous, non-blocking reactive streams using Project Reactor (`Mono`, `Flux`).
+  - **Caching:** Reactive caching abstractions with Redis.
 
 ---
 
 ## 📈 Learning Path Summary
-| Level | Projects | Primary Goal |
+
+| Level | Modules | Primary Goal |
 | :--- | :--- | :--- |
-| **Junior-Mid** | 1, 2, 3 | Build functional, data-driven REST APIs. |
-| **Mid-Senior** | 4, 5, 8 | Secure, optimize, and test for enterprise standards. |
-| **Senior-Lead** | 6, 7 | Architect for high-scale, cloud-native observability. |
+| **Junior-Mid** | `01_spring-basic`, `02_spring-web-basic`, `03_spring-data-jpa` | Master core IoC/DI and build production-ready data-driven REST APIs. |
+| **Mid-Senior** | `04_spring-security-pro`, `05_spring-aop-internals`, `06_spring-testing-mastery` | Secure, optimize, understand framework internals, and test with enterprise standards. |
+| **Senior-Lead** | `07_spring-observability-resilience`, `08_spring-reactive-concurrency` | Architect for resilience, high concurrency (Virtual Threads/WebFlux), and cloud observability. |
+
+---
+
+> [!TIP]
+> For upcoming enterprise additions (Kafka, Flyway, Swagger, Docker Compose), check out the **[Architectural Gaps & Enhancement Roadmap](./enhancements.md)**.
