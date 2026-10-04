@@ -1,0 +1,6 @@
+app:
+  name: "Web-Basic-App"
+  environment: "Development"
+  features:
+    newUI: "enabled"
+    betaAccess: "true"

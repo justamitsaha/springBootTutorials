@@ -1,0 +1,8 @@
+spring:
+  threads:
+    virtual:
+      enabled: true # Enable Project Loom support
+  data:
+    redis:
+      host: localhost
+      port: 6379

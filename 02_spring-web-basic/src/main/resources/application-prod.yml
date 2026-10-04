@@ -1,0 +1,6 @@
+app:
+  name: "Enterprise-Web-App"
+  environment: "Production"
+  features:
+    newUI: "disabled"
+    betaAccess: "false"
